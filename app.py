@@ -229,16 +229,14 @@ def clean_tweet(text: str) -> str:
     return text
 
 
+# ── Set your Hugging Face model repo ID here ──────────────────────────────────
+HF_MODEL_ID = "Harbidel/sarcasm-bert"   # <-- update after uploading to HF Hub
+# ──────────────────────────────────────────────────────────────────────────────
+
 @st.cache_resource(show_spinner=False)
-def load_model(model_path: str = "./sarcasm_bert"):
-    if not os.path.exists(model_path):
-        st.error(
-            f"Model not found at `{model_path}`. "
-            "Run the training notebook first and make sure `sarcasm_bert/` is in the same directory."
-        )
-        st.stop()
-    tokenizer = BertTokenizer.from_pretrained(model_path)
-    model     = BertForSequenceClassification.from_pretrained(model_path)
+def load_model(model_id: str = HF_MODEL_ID):
+    tokenizer = BertTokenizer.from_pretrained(model_id)
+    model     = BertForSequenceClassification.from_pretrained(model_id)
     model.eval()
     return tokenizer, model
 
@@ -261,7 +259,7 @@ def predict(text: str, tokenizer, model, max_len: int = 64):
 
 # ── Load model ─────────────────────────────────────────────────────────────────
 with st.spinner("Loading BERT model…"):
-    tokenizer, model = load_model("./sarcasm_bert")
+    tokenizer, model = load_model()
 
 
 # ── UI ─────────────────────────────────────────────────────────────────────────
