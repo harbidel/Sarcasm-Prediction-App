@@ -38,19 +38,6 @@ sarcasm_bert/
   vocab.txt
   special_tokens_map.json
 ```
-
----
-
-## Deploy on Streamlit Cloud
-
-1. Push this repo (including `sarcasm_bert/`) to GitHub
-2. Go to [share.streamlit.io](https://share.streamlit.io)
-3. Click **New app**
-4. Select your repo, branch (`main`), and set main file to `app.py`
-5. Click **Deploy**
-
-> **Note:** The free tier of Streamlit Cloud has 1 GB RAM. BERT fits within this but may take ~30 seconds to load on first visit.
-
 ---
 
 ## Run locally
